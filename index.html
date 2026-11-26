@@ -355,6 +355,10 @@ body.admin .gal-tools{display:flex}
 .gal-item figcaption{position:absolute;left:.8rem;bottom:.8rem;right:.8rem;justify-self:start;width:max-content;max-width:calc(100% - 1.6rem);background:rgba(255,255,255,.94);color:#0f1f33;font-size:.8rem;font-weight:600;padding:.45rem .7rem;border-radius:10px}
 .gal-item .rm{position:absolute;top:.6rem;right:.6rem;display:none;font:700 .74rem/1 var(--body);padding:.5rem .7rem;border-radius:999px;border:0;cursor:pointer;background:#0b2340;color:#fff}
 body.admin .gal-item .rm{display:inline-block}
+.uni .gal-item{aspect-ratio:3/2;background:#fff;box-shadow:none;border:1px solid var(--line);border-radius:12px}
+.uni .gal-item img{object-fit:contain;padding:.9rem}
+.uni .gal-item figcaption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);padding:0}
+.uni .gal-item .rm{top:.35rem;right:.35rem;padding:.4rem .55rem;font-size:.68rem}
 /* leads admin */
 .lead-bar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:end}
 .lead-bar label{flex:0 1 200px}
@@ -436,7 +440,7 @@ table.leads{min-width:980px}
       <div class="two" style="gap:2rem">
         <div class="stack">
           <span class="eyebrow">Our admits</span>
-          <div class="uni">
+          <div class="uni" data-gallery="admits" data-hint="University name, e.g. NYU">
             <div>NYU</div><div>Columbia</div><div>Babson</div><div>UCL</div><div>NUS</div><div>Ashoka</div>
           </div>
         </div>
@@ -516,6 +520,17 @@ table.leads{min-width:980px}
         <a class="vid" href="https://youtu.be/FBfgNm5WyTo" target="_blank" rel="noopener"><div class="ph"><span class="play" aria-hidden="true"></span><div class="tag"><b>YouTube</b>Student testimonial</div></div><span>Watch on YouTube ↗</span></a>
       </div>
       <div class="tgrid" id="home-quotes"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Life at College Smart</span><h2>Our students, sessions and celebrations</h2></div>
+      <div class="vids" data-gallery="home-moments" data-hint="Caption (optional), e.g. Admit day celebration">
+        <div class="ph wide"><div class="tag"><b>Photo</b>Students with their counsellor</div></div>
+        <div class="ph wide"><div class="tag"><b>Photo</b>Admit day celebration</div></div>
+        <div class="ph wide"><div class="tag"><b>Photo</b>Workshop in progress</div></div>
+      </div>
     </div>
   </section>
 
@@ -864,7 +879,7 @@ table.leads{min-width:980px}
       </div>
       <div class="stack">
         <span class="eyebrow">Our students have been admitted to</span>
-        <div class="uni"><div>NYU</div><div>Columbia</div><div>Babson</div><div>UCL</div><div>NUS</div><div>Ashoka</div></div>
+        <div class="uni" data-gallery="admits" data-hint="University name, e.g. NYU"><div>NYU</div><div>Columbia</div><div>Babson</div><div>UCL</div><div>NUS</div><div>Ashoka</div></div>
       </div>
     </div>
   </section>
@@ -1566,18 +1581,19 @@ table.leads{min-width:980px}
 
   /* ---------- photo galleries (add any number of photos) ---------- */
   var galleries={};
-  document.querySelectorAll('[data-gallery]').forEach(function(g){
-    var name=g.dataset.gallery;galleries[name]={el:g,rows:[]};
-    var t=document.createElement('div');t.className='gal-tools';var fid='gal-'+name;
-    t.innerHTML='<input type="text" id="cap-'+fid+'" placeholder="Caption (optional), e.g. school or event name" maxlength="300">'+
-      '<label class="btn primary" for="'+fid+'">+ Add photos</label><input type="file" id="'+fid+'" accept="image/*" multiple><span class="st" role="status"></span>';
+  document.querySelectorAll('[data-gallery]').forEach(function(g,gi){
+    var name=g.dataset.gallery;if(!galleries[name])galleries[name]={els:[],rows:[]};galleries[name].els.push(g);
+    var t=document.createElement('div');t.className='gal-tools';var fid='gal-'+name+'-'+gi;
+    t.innerHTML='<input type="text" id="cap-'+fid+'" placeholder="'+esc(g.dataset.hint||'Caption (optional), e.g. school or event name')+'" maxlength="300">'+
+      '<label class="btn primary" for="'+fid+'">'+(name==='admits'?'+ Add logos':'+ Add photos')+'</label><input type="file" id="'+fid+'" accept="image/*" multiple><span class="st" role="status"></span>';
     t.querySelector('input[type=file]').addEventListener('change',function(e){var files=[].slice.call(e.target.files);e.target.value='';if(files.length)addPhotos(name,files,t)});
     g.parentNode.insertBefore(t,g);
   });
   function renderGallery(name){
     var G=galleries[name];if(!G)return;
-    G.el.querySelectorAll('.gal-item').forEach(function(x){x.remove()});
-    G.el.querySelectorAll(':scope > .ph').forEach(function(p){p.hidden=G.rows.length>0});
+    G.els.forEach(function(el){
+    el.querySelectorAll('.gal-item').forEach(function(x){x.remove()});
+    el.querySelectorAll(':scope > :not(.gal-item)').forEach(function(p){p.hidden=G.rows.length>0});
     G.rows.forEach(function(row){
       var fig=document.createElement('figure');fig.className='gal-item';
       var img=document.createElement('img');img.src=row.url;img.alt=row.caption||'College Smart photo';img.loading='lazy';fig.appendChild(img);
@@ -1589,7 +1605,8 @@ table.leads{min-width:980px}
           .then(function(){G.rows=G.rows.filter(function(r){return r.id!==row.id});renderGallery(name);if(row.storage_path)deleteFile(row.storage_path)})
           .catch(function(e){rm.disabled=false;rm.textContent='Couldn\'t remove: '+e.message});
       });
-      fig.appendChild(rm);G.el.appendChild(fig);
+      fig.appendChild(rm);el.appendChild(fig);
+    });
     });
   }
   function addPhotos(name,files,t){
