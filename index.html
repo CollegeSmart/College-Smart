@@ -372,6 +372,19 @@ body.admin .gal-item .rm{display:inline-block}
 .f-au{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJmbGFnLWljb25zLWF1IiB2aWV3Qm94PSIwIDAgNjQwIDQ4MCI+CiAgPHBhdGggZmlsbD0iIzAwMDA4QiIgZD0iTTAgMGg2NDB2NDgwSDB6Ii8+CiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0ibTM3LjUgMCAxMjIgOTAuNUwyODEgMGgzOXYzMWwtMTIwIDg5LjUgMTIwIDg5VjI0MGgtNDBsLTEyMC04OS41TDQwLjUgMjQwSDB2LTMwbDExOS41LTg5TDAgMzJWMHoiLz4KICA8cGF0aCBmaWxsPSJyZWQiIGQ9Ik0yMTIgMTQwLjUgMzIwIDIyMHYyMGwtMTM1LjUtOTkuNXptLTkyIDEwIDMgMTcuNS05NiA3Mkgwek0zMjAgMHYxLjVsLTEyNC41IDk0IDEtMjJMMjk1IDB6TTAgMGwxMTkuNSA4OGgtMzBMMCAyMXoiLz4KICA8cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTIwLjUgMHYyNDBoODBWMHpNMCA4MHY4MGgzMjBWODB6Ii8+CiAgPHBhdGggZmlsbD0icmVkIiBkPSJNMCA5Ni41djQ4aDMyMHYtNDh6TTEzNi41IDB2MjQwaDQ4VjB6Ii8+CiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0ibTUyNyAzOTYuNy0yMC41IDIuNiAyLjIgMjAuNS0xNC44LTE0LjQtMTQuNyAxNC41IDItMjAuNS0yMC41LTIuNCAxNy4zLTExLjItMTAuOS0xNy41IDE5LjYgNi41IDYuOS0xOS41IDcuMSAxOS40IDE5LjUtNi43LTEwLjcgMTcuNnptLTMuNy0xMTcuMiAyLjctMTMtOS44LTkgMTMuMi0xLjUgNS41LTEyLjEgNS41IDEyLjEgMTMuMiAxLjUtOS44IDkgMi43IDEzLTExLjYtNi42em0tMTA0LjEtNjAtMjAuMyAyLjIgMS44IDIwLjMtMTQuNC0xNC41LTE0LjggMTQuMSAyLjQtMjAuMy0yMC4yLTIuNyAxNy4zLTEwLjgtMTAuNS0xNy41IDE5LjMgNi44TDM4NyAxNzhsNi43IDE5LjMgMTkuNC02LjMtMTAuOSAxNy4zIDE3LjEgMTEuMlpNNjIzIDE4Ni43bC0yMC45IDIuNyAyLjMgMjAuOS0xNS4xLTE0LjctMTUgMTQuOCAyLjEtMjEtMjAuOS0yLjQgMTcuNy0xMS41LTExLjEtMTcuOSAyMCA2LjcgNy0xOS44IDcuMiAxOS44IDE5LjktNi45LTExIDE4em0tOTYuMS04My41LTIwLjcgMi4zIDEuOSAyMC44LTE0LjctMTQuOC0xNS4xIDE0LjQgMi40LTIwLjctMjAuNy0yLjggMTcuNy0xMUw0NjcgNzMuNWwxOS43IDYuOSA3LjMtMTkuNSA2LjggMTkuNyAxOS44LTYuNS0xMS4xIDE3LjZ6TTIzNCAzODUuN2wtNDUuOCA1LjQgNC42IDQ1LjktMzIuOC0zMi40LTMzIDMyLjIgNC45LTQ1LjktNDUuOC01LjggMzguOS0yNC44LTI0LTM5LjQgNDMuNiAxNSAxNS44LTQzLjQgMTUuNSA0My41IDQzLjctMTQuNy0yNC4zIDM5LjIgMzguOCAyNS4xWiIvPgo8L3N2Zz4=")}
 .uni .logo-tile{display:grid;place-items:center;padding:.9rem .8rem;min-height:84px;background:#fff}
 .uni .logo-tile img{max-width:100%;max-height:46px;width:auto;height:auto;display:block}
+/* 3D book mockup */
+.book3d{--bw:290px;--bt:34px;perspective:1600px;display:grid;place-items:center;padding-block:1.5rem 3rem;position:relative}
+.book3d::after{content:"";position:absolute;bottom:1.4rem;left:50%;width:calc(var(--bw) * 1.05);height:26px;transform:translateX(-46%);background:radial-gradient(ellipse at center,rgba(11,35,64,.38),rgba(11,35,64,0) 70%);filter:blur(4px);z-index:0}
+.book3d-inner{position:relative;z-index:1;width:var(--bw);aspect-ratio:720/1081;transform-style:preserve-3d;transform:rotateY(-28deg) rotateX(2deg);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.book3d:hover .book3d-inner{transform:rotateY(-12deg) rotateX(1deg)}
+.book3d-front{position:absolute;inset:0;transform:translateZ(calc(var(--bt) / 2));border-radius:2px 6px 6px 2px;overflow:hidden;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.book3d-front img{width:100%;height:100%;object-fit:cover;display:block}
+.book3d-front::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.22) 0,rgba(0,0,0,.05) 1.6%,rgba(255,255,255,.28) 2.6%,rgba(0,0,0,.08) 3.8%,rgba(0,0,0,0) 7%)}
+.book3d-front::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(115deg,rgba(255,255,255,0) 35%,rgba(255,255,255,.22) 48%,rgba(255,255,255,0) 62%)}
+.book3d-inner::before{content:"";position:absolute;left:0;top:3px;width:calc(var(--bt) - 2px);height:calc(100% - 8px);transform:translateX(calc(var(--bw) - var(--bt) / 2 - 1px)) rotateY(90deg);box-shadow:inset 0 0 6px rgba(0,0,0,.12);background:linear-gradient(90deg,#fff 0%,#f3f3f3 6%,#fff 12%,#ececec 18%,#fff 24%,#f3f3f3 30%,#fff 36%,#eaeaea 42%,#fff 48%,#f2f2f2 54%,#fff 60%,#ececec 66%,#fff 72%,#f3f3f3 78%,#fff 84%,#e8e8e8 90%,#fff 100%)}
+.book3d-inner::after{content:"";position:absolute;inset:0;transform:translateZ(calc(var(--bt) / -2));background:#d9dcdf;border-radius:2px 6px 6px 2px;box-shadow:-14px 6px 40px 2px rgba(11,35,64,.32)}
+@media (max-width:520px){.book3d{--bw:220px;--bt:26px}}
+@media (prefers-reduced-motion:reduce){.book3d-inner{transform:rotateY(-20deg)}}
 /* leads admin */
 .lead-bar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:end}
 .lead-bar label{flex:0 1 200px}
@@ -560,11 +573,13 @@ table.leads{min-width:980px}
 
   <section>
     <div class="wrap bookwrap" id="book-section">
-      <div class="cover" aria-hidden="true"><div class="a">College Smart</div><div class="t">Clarity to Career</div><div class="a">Navya Mehta</div></div>
+      <div class="book3d" role="img" aria-label="Clarity to Career by Navya Mehta: book cover">
+        <div class="book3d-inner"><div class="book3d-front"><img src="assets/book-cover.jpg" alt="" width="720" height="1081" loading="lazy"></div></div>
+      </div>
       <div class="stack" style="gap:1.2rem">
         <span class="eyebrow">Authored book</span>
         <h2>Clarity to Career</h2>
-        <p class="lead">A guide to discovering your interests, understanding your strengths and finding direction for your future. By Navya Mehta.</p>
+        <p class="lead"><strong>A parent-student guide to winning top university admissions with the right strategy.</strong> Discover your interests, understand your strengths and find direction for your future. By Navya Mehta.</p>
         <form class="formcard order-form" novalidate><input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="grid">
             <label>Name <span class="req">*</span><input id="o-name" name="name" required autocomplete="name"></label>
@@ -1189,7 +1204,9 @@ table.leads{min-width:980px}
 
   <section>
     <div class="wrap bookwrap">
-      <div class="cover" aria-hidden="true"><div class="a">College Smart</div><div class="t">Clarity to Career</div><div class="a">Navya Mehta</div></div>
+      <div class="book3d" role="img" aria-label="Clarity to Career by Navya Mehta: book cover">
+        <div class="book3d-inner"><div class="book3d-front"><img src="assets/book-cover.jpg" alt="" width="720" height="1081" loading="lazy"></div></div>
+      </div>
       <div class="stack" style="gap:1.2rem">
         <span class="eyebrow">Not ready to figure it all out?</span>
         <h2>Start with a book.</h2>
