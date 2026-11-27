@@ -479,6 +479,159 @@ table.leads{min-width:980px}
 .st-sel.s-enrolled{border-color:#2e9d5b}
 .leads .del{background:none;border:1px solid var(--line);border-radius:999px;padding:.4rem .75rem;font:600 .8rem var(--body);color:#c0392b;cursor:pointer}
 .view{display:block}
+
+/* ================= PREMIUM LAYER =================
+   Deep-navy surfaces lit by soft brand-blue and gold light, generous whitespace,
+   hairline borders, layered soft shadows, ivory "studio" backdrops for books. */
+:root{
+  --ink:#0b1b2e;
+  --muted:#5a6878;
+  --soft:#f6f7f9;
+  --line:#e6e9ee;
+  --navy:#0a1a2f;
+  --gold:#f2b93b;
+  --grad-y:linear-gradient(180deg,#ffd25e 0%,#f2b33a 100%);
+  --deep:radial-gradient(900px 520px at 88% -8%,rgba(91,140,178,.55),rgba(91,140,178,0) 62%),radial-gradient(700px 480px at 4% 108%,rgba(242,185,59,.14),rgba(242,185,59,0) 60%),linear-gradient(180deg,#0b1d33 0%,#0a1a2f 100%);
+  --studio:radial-gradient(120% 90% at 50% 18%,#ffffff 0%,#f6f3ee 45%,#e9e4db 100%);
+  --hair:1px solid rgba(11,27,46,.08);
+  --shadow:0 1px 1px rgba(11,27,46,.04),0 2px 6px rgba(11,27,46,.04),0 12px 32px rgba(11,27,46,.06);
+  --shadow-lg:0 2px 4px rgba(11,27,46,.06),0 24px 64px rgba(11,27,46,.16);
+  --r:18px;
+  --wrap:1200px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#eef2f7;--muted:#9fb0c2;--soft:#0f1c2c;--line:#1e2e42;--hair:1px solid rgba(255,255,255,.08);--studio:radial-gradient(120% 90% at 50% 18%,#26384d 0%,#182739 55%,#111d2b 100%)}}
+:root[data-theme="dark"]{--ink:#eef2f7;--muted:#9fb0c2;--soft:#0f1c2c;--line:#1e2e42;--hair:1px solid rgba(255,255,255,.08);--studio:radial-gradient(120% 90% at 50% 18%,#26384d 0%,#182739 55%,#111d2b 100%)}
+
+body{font-size:16.5px;letter-spacing:-.003em}
+h1{font-size:clamp(2.4rem,4.6vw,3.8rem);font-weight:700;letter-spacing:-.035em;line-height:1.04}
+h2{font-size:clamp(1.9rem,3.6vw,3rem);font-weight:700;letter-spacing:-.03em;line-height:1.1}
+h3{font-weight:700;letter-spacing:-.015em}
+.lead{font-size:1.12rem;line-height:1.75}
+section{padding-block:clamp(4.5rem,9vw,8rem)}
+.sec-head{gap:1rem;margin-bottom:3.5rem}
+.alt{background:var(--soft)}
+
+/* eyebrow: small caps with a gold dot */
+.eyebrow{font-size:.74rem;letter-spacing:.18em;font-weight:700;color:var(--blue-deep)}
+.eyebrow::before{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(242,185,59,.18)}
+
+/* deep surfaces with light, fine grid */
+.hero,.dark,footer.site{background:var(--deep)}
+.hero::after,.dark::after{display:none}
+.hero::before,.dark::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse at 70% 30%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 70% 30%,#000 0%,transparent 70%)}
+.hero .lead,.dark .lead,.hero .muted,.dark .muted{color:#b8c6d6}
+.hero .eyebrow,.dark .eyebrow{color:var(--gold)}
+.hero h1 em,.dark h2 em{background:linear-gradient(180deg,#ffe08a 0%,#f2b33a 100%);-webkit-background-clip:text;background-clip:text}
+
+/* buttons */
+.btn{border-radius:999px;font-weight:600;letter-spacing:.005em;padding:1.02rem 1.6rem}
+.btn.primary{background:var(--grad-y);color:#0a1a2f;box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 1px 2px rgba(11,27,46,.12),0 8px 20px rgba(242,179,58,.28)}
+.btn.primary:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 12px 30px rgba(242,179,58,.42)}
+.btn:not(.primary):not(.ghost){background:#0a1a2f;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 8px 22px rgba(10,26,47,.25)}
+.btn.ghost{border:1px solid var(--line);background:transparent}
+.hero .btn.ghost,.dark .btn.ghost{border-color:rgba(255,255,255,.28);backdrop-filter:blur(6px)}
+
+/* header */
+header.site{background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:saturate(1.6) blur(14px);border-bottom:var(--hair)}
+.nav{min-height:76px}
+.menu a{font-weight:500;font-size:.92rem;color:var(--ink);opacity:.82}
+.menu a:hover{opacity:1;color:var(--ink)}
+.menu a[aria-current="page"]{opacity:1;color:var(--ink);box-shadow:none;position:relative}
+.menu a[aria-current="page"]::after{content:"";position:absolute;left:50%;bottom:.15rem;width:5px;height:5px;border-radius:50%;background:var(--gold);transform:translateX(-50%)}
+.menu .btn,.menu .btn:not(.primary):not(.ghost){opacity:1;padding:.78rem 1.25rem;font-weight:600;background:var(--grad-y);color:#0a1a2f;box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 6px 16px rgba(242,179,58,.28)}
+@media (max-width:1040px){.menu a{opacity:1}.menu a[aria-current="page"]{color:#fff;background:#0a1a2f;border-color:#0a1a2f}.menu a[aria-current="page"]::after{display:none}}
+
+/* hero */
+.hero{padding-block:clamp(4.5rem,9vw,7.5rem)}
+.hero:has(+ section .stats){padding-bottom:clamp(8rem,13vw,10.5rem)}
+.stars{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);font-weight:500;color:#d4dfeb}
+.hero .ph{background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);box-shadow:0 40px 80px rgba(0,0,0,.35);border-radius:24px}
+.hero .ph::before{filter:invert(1);opacity:.35}
+.float{border-radius:16px;border:var(--hair);box-shadow:0 24px 50px rgba(0,0,0,.28)}
+.float b{color:#0a1a2f}
+
+/* placeholders: calm neutral */
+.ph{background:linear-gradient(150deg,#f1f3f6 0%,#e3e8ee 100%);border-radius:var(--r);box-shadow:none;border:var(--hair)}
+.ph::before{opacity:.7}
+.ph .tag{border-radius:10px;box-shadow:0 6px 18px rgba(11,27,46,.08);border:var(--hair)}
+
+/* stats */
+.stats{border-radius:24px;border:var(--hair);box-shadow:var(--shadow-lg)}
+.stat{padding:2.1rem 1.8rem}
+.stat .n{background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--ink);font-weight:700;letter-spacing:-.03em}
+:root[data-theme="dark"] .stat .n{background:none;color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .stat .n{background:none;color:var(--ink)}}
+.stat .l{font-weight:500}
+.stat .n::after{content:"";display:block;width:22px;height:3px;border-radius:2px;background:var(--gold);margin-top:.7rem}
+
+/* question & warning lists: editorial rows instead of boxes */
+.qs{gap:0;border-top:var(--hair)}
+.qs li{background:none;border:0;border-bottom:var(--hair);border-radius:0;padding:1rem 0 1rem 2.6rem;font-weight:500}
+.qs li::before{left:0;top:1.05rem;background:transparent;border:1.5px solid var(--blue);color:var(--blue-deep)}
+.xs li{border-radius:14px;border:var(--hair)}
+.dark .xs li{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1)}
+
+/* frameworks */
+.fw-row{border:var(--hair);box-shadow:var(--shadow);border-radius:20px;padding:1.6rem}
+.fw-row:hover{box-shadow:var(--shadow-lg)}
+.fw-row .L{background:linear-gradient(160deg,#16314f 0%,#0a1a2f 100%);border-radius:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.fw-row .L::after{display:none}
+.fw-row .L{color:#ffd97a}
+
+/* steps, cards, testimonials */
+.steps li,.quote,.item,.sbook{border:var(--hair);box-shadow:var(--shadow);border-radius:20px}
+.steps .num{background:transparent;color:var(--blue-deep);padding:0;letter-spacing:.16em}
+.quote{padding:1.8rem}
+.quote::before{font-size:.85rem;color:var(--gold)}
+.quote p{font-size:1.02rem;line-height:1.7}
+.quote cite{color:var(--ink);font-weight:600}
+.vid span{color:var(--ink)}
+.chip{border:var(--hair);box-shadow:none;font-weight:500}
+
+/* award */
+.medal{background:radial-gradient(circle at 35% 30%,#ffe7a3,#f2b33a 60%,#c98a12);box-shadow:0 0 0 1px rgba(255,255,255,.25),0 0 0 10px rgba(242,185,59,.12),0 20px 40px rgba(0,0,0,.35)}
+
+/* admits marquee */
+.admit-logo{border:var(--hair);box-shadow:0 1px 2px rgba(11,27,46,.04);border-radius:18px}
+.admit-logo:hover{box-shadow:var(--shadow-lg)}
+.admit-tabs button{font-weight:500}
+
+/* book showcase: ivory studio instead of blue */
+.book-stage{background:var(--studio);border:var(--hair);box-shadow:var(--shadow-lg);border-radius:28px}
+.book-stage::before{background:radial-gradient(circle,rgba(255,255,255,.9) 0%,rgba(255,255,255,0) 65%)}
+.book-stage .book3d::after{background:radial-gradient(ellipse at center,rgba(60,48,30,.38),rgba(60,48,30,0) 70%)}
+.stage-badge{border:var(--hair);box-shadow:0 14px 30px rgba(11,27,46,.14)}
+.author-line{background:var(--card);border:var(--hair);box-shadow:var(--shadow)}
+
+/* student books: gallery-grade cards */
+.student-books{gap:1.5rem}
+.sbook{border-radius:22px}
+.sbook-media{height:300px;background:var(--studio)}
+.sbook-media.contain{background:var(--studio);padding:1.6rem}
+.sbook-media.contain img.fill,.sbook-media.studio img.fill{object-fit:contain;filter:drop-shadow(0 18px 22px rgba(40,30,15,.28))}
+.sbook-body{padding:1.4rem 1.5rem 1.6rem;gap:.55rem}
+.sbook-body .pill{background:transparent;padding:0;color:#b07d12;letter-spacing:.14em;text-transform:uppercase;font-size:.68rem}
+.sbook-body h3{font-size:1.18rem;line-height:1.25}
+.sbook .by{display:flex;align-items:center;gap:.55rem;margin-top:.35rem;padding-top:.9rem;border-top:var(--hair)}
+.sbook .by::before{content:attr(data-initials);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#0a1a2f;color:#ffd97a;font-size:.7rem;font-weight:700;letter-spacing:.04em;flex:none}
+
+/* forms */
+.formcard{border:var(--hair);border-radius:24px;box-shadow:var(--shadow-lg)}
+input,select,textarea{border:1px solid var(--line);border-radius:12px;background:var(--card)}
+label{font-weight:600;font-size:.82rem;letter-spacing:.01em}
+
+/* tables */
+.tablebox{border:var(--hair);border-radius:20px;box-shadow:var(--shadow)}
+th:last-child{background:#0a1a2f}
+td:last-child::before{background:var(--gold);color:#0a1a2f}
+
+/* footer */
+footer.site{padding-block:5.5rem 2.2rem}
+.fgrid h4{color:var(--gold);letter-spacing:.18em}
+.fbot{border-top-color:rgba(255,255,255,.1)}
+
+/* gentle reveal on hover only; respect reduced motion */
+@media (prefers-reduced-motion:reduce){.sbook:hover,.fw-row:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -1092,19 +1245,19 @@ table.leads{min-width:980px}
       <div class="student-books">
         <article class="sbook">
           <div class="sbook-media contain"><img class="fill" src="assets/books/debate-without-fear-full.jpg" alt="Back cover, spine and front cover of Debate Without Fear by Piyush Narang" width="943" height="721" loading="lazy"></div>
-          <div class="sbook-body"><span class="pill">MUN &amp; debate</span><h3>Debate Without Fear</h3><p class="muted">Building confidence for MUNs and beyond. From a nervous first MUN in Grade 9 to 13 consecutive wins and 500+ students mentored across 12 countries.</p><p class="by">By <b>Piyush Narang</b></p></div>
+          <div class="sbook-body"><span class="pill">MUN &amp; debate</span><h3>Debate Without Fear</h3><p class="muted">Building confidence for MUNs and beyond. From a nervous first MUN in Grade 9 to 13 consecutive wins and 500+ students mentored across 12 countries.</p><p class="by" data-initials="PN"><span>By <b>Piyush Narang</b></span></p></div>
         </article>
         <article class="sbook">
           <div class="sbook-media"><img class="fill" src="assets/books/anatomy-of-starting-a-business.jpg" alt="Nakshatra Bajaj behind a table of copies of The Anatomy of Starting a Business" width="900" height="675" loading="lazy" style="object-position:50% 35%"></div>
-          <div class="sbook-body"><span class="pill">Entrepreneurship</span><h3>The Anatomy of Starting a Business</h3><p class="muted">Pictured at the book launch.</p><p class="by">By <b>Nakshatra Bajaj</b></p></div>
+          <div class="sbook-body"><span class="pill">Entrepreneurship</span><h3>The Anatomy of Starting a Business</h3><p class="muted">Pictured at the book launch.</p><p class="by" data-initials="NB"><span>By <b>Nakshatra Bajaj</b></span></p></div>
         </article>
         <article class="sbook">
           <div class="sbook-media"><img class="fill" src="assets/books/in-the-silence-under-the-stars.jpg" alt="Front and back cover of In the Silence Under the Stars" width="1000" height="700" loading="lazy"></div>
-          <div class="sbook-body"><span class="pill">Prose &amp; poetry</span><h3>In the Silence Under the Stars</h3><p class="muted">Prose and poetry on the complexity of human emotions.</p><p class="by">By <b>Nyssa Gupta</b></p></div>
+          <div class="sbook-body"><span class="pill">Prose &amp; poetry</span><h3>In the Silence Under the Stars</h3><p class="muted">Prose and poetry on the complexity of human emotions.</p><p class="by" data-initials="NG"><span>By <b>Nyssa Gupta</b></span></p></div>
         </article>
         <article class="sbook">
           <div class="sbook-media"><div class="ph"><div class="tag"><b>Book cover</b>Yash Bansal</div></div></div>
-          <div class="sbook-body"><span class="pill">Student author</span><h3>Book by Yash Bansal</h3><p class="muted">Cover and title coming soon.</p><p class="by">By <b>Yash Bansal</b></p></div>
+          <div class="sbook-body"><span class="pill">Student author</span><h3>Book by Yash Bansal</h3><p class="muted">Cover and title coming soon.</p><p class="by" data-initials="YB"><span>By <b>Yash Bansal</b></span></p></div>
         </article>
       </div>
       <div class="stack" style="gap:1rem">
