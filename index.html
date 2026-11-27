@@ -436,6 +436,26 @@ body.admin .gal-item .rm{display:inline-block}
 body.admin .admits-admin{display:grid!important}
 @media (max-width:600px){.admit-logo{width:160px;height:82px;padding:.8rem}.admit-logo img{max-height:44px}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:auto;gap:1rem}.marquee-track .admit-logo{margin-right:0}.marquee-track [aria-hidden="true"]{display:none}}
+/* student books */
+.student-books{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem}
+.sbook{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;min-width:0}
+.sbook:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.sbook-media{height:280px;position:relative;overflow:hidden;background:#e9edf1}
+.sbook-media img.fill{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.sbook:hover .sbook-media img.fill{transform:scale(1.04)}
+.sbook-media.stage{background:radial-gradient(circle at 50% 42%,rgba(255,197,51,.35),rgba(255,197,51,0) 55%),var(--grad);display:grid;place-items:center}
+.sbook-media .book3d{--bw:128px;--bt:16px;padding:0}
+.sbook-media .book3d::after{display:none}
+.sbook-media .ph{height:100%;aspect-ratio:auto;border-radius:0;box-shadow:none}
+.sbook-body{padding:1.2rem 1.3rem 1.4rem;display:grid;gap:.45rem;align-content:start}
+.sbook-body .pill{justify-self:start}
+.sbook-body h3{font-size:1.08rem}
+.sbook-body p{font-size:.92rem}
+.sbook .by{color:var(--muted)}
+.sbook .by b{color:var(--ink)}
+.next-grid{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem 1.5rem}
+@media (max-width:1100px){.student-books{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.student-books{grid-template-columns:1fr}.sbook-media{height:250px}.sbook-media.stage{height:290px}}
 /* leads admin */
 .lead-bar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:end}
 .lead-bar label{flex:0 1 200px}
@@ -1061,27 +1081,43 @@ table.leads{min-width:980px}
   </section>
 
   <section class="alt">
-    <div class="wrap two">
-      <div class="stack">
+    <div class="wrap stack" style="gap:2.5rem">
+      <div class="sec-head" style="margin-bottom:0">
         <span class="eyebrow">Real students. Real stories.</span>
         <h2>Books written by College Smart students</h2>
-        <div class="people">
-          <div class="person"><div class="ph" style="aspect-ratio:2/3"><div class="tag"><b>Book cover</b>Nakshatra Bajaj</div></div><b>Nakshatra Bajaj</b></div>
-          <div class="person"><div class="ph" style="aspect-ratio:2/3"><div class="tag"><b>Book cover</b>Nyssa Gupta</div></div><b>Nyssa Gupta</b></div>
-          <div class="person"><div class="ph" style="aspect-ratio:2/3"><div class="tag"><b>Book cover</b>Yash Bansal</div></div><b>Yash Bansal</b></div>
-          <div class="person"><div class="ph" style="aspect-ratio:2/3"><div class="tag"><b>Book cover</b>Piyush Narang</div></div><b>Piyush Narang</b></div>
-        </div>
+        <p class="lead">Our students don't just collect certificates. They create. These books were written by Smarties while building their profiles with us.</p>
       </div>
-      <div class="stack">
+      <div class="student-books">
+        <article class="sbook">
+          <div class="sbook-media stage">
+            <div class="book3d" role="img" aria-label="Debate Without Fear by Piyush Narang: book cover">
+              <div class="book3d-inner"><div class="book3d-front"><img src="assets/books/debate-without-fear.jpg" alt="" width="600" height="937" loading="lazy"></div></div>
+            </div>
+          </div>
+          <div class="sbook-body"><span class="pill">MUN &amp; debate</span><h3>Debate Without Fear</h3><p class="muted">Building confidence for MUNs and beyond.</p><p class="by">By <b>Piyush Narang</b></p></div>
+        </article>
+        <article class="sbook">
+          <div class="sbook-media"><img class="fill" src="assets/books/anatomy-of-starting-a-business.jpg" alt="Nakshatra Bajaj behind a table of copies of The Anatomy of Starting a Business" width="900" height="675" loading="lazy" style="object-position:50% 35%"></div>
+          <div class="sbook-body"><span class="pill">Entrepreneurship</span><h3>The Anatomy of Starting a Business</h3><p class="muted">Pictured at the book launch.</p><p class="by">By <b>Nakshatra Bajaj</b></p></div>
+        </article>
+        <article class="sbook">
+          <div class="sbook-media"><img class="fill" src="assets/books/in-the-silence-under-the-stars.jpg" alt="Front and back cover of In the Silence Under the Stars" width="1000" height="700" loading="lazy"></div>
+          <div class="sbook-body"><span class="pill">Prose &amp; poetry</span><h3>In the Silence Under the Stars</h3><p class="muted">Prose and poetry on the complexity of human emotions.</p><p class="by">By <b>Nyssa Gupta</b></p></div>
+        </article>
+        <article class="sbook">
+          <div class="sbook-media"><div class="ph"><div class="tag"><b>Book cover</b>Yash Bansal</div></div></div>
+          <div class="sbook-body"><span class="pill">Student author</span><h3>Book by Yash Bansal</h3><p class="muted">Cover and title coming soon.</p><p class="by">By <b>Yash Bansal</b></p></div>
+        </article>
+      </div>
+      <div class="stack" style="gap:1rem">
         <span class="eyebrow">Where our students went next</span>
-        <h2>Some of our students went on to…</h2>
-        <ul class="ticks">
-          <li>Start community projects</li>
-          <li>Win research grants</li>
-          <li>Intern with startups</li>
-          <li>Speak at global forums</li>
-          <li>Publish research in <em>The Tribune</em></li>
-          <li>Work with NGOs</li>
+        <ul class="ticks next-grid">
+          <li>Started community projects</li>
+          <li>Won research grants</li>
+          <li>Interned with startups</li>
+          <li>Spoke at global forums</li>
+          <li>Published research in <em>The Tribune</em></li>
+          <li>Worked with NGOs</li>
         </ul>
       </div>
     </div>
