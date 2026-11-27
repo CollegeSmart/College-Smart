@@ -443,6 +443,8 @@ body.admin .admits-admin{display:grid!important}
 .sbook-media{height:280px;position:relative;overflow:hidden;background:#e9edf1}
 .sbook-media img.fill{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
 .sbook:hover .sbook-media img.fill{transform:scale(1.04)}
+.sbook-media.contain{background:#e9edf1;padding:1.1rem}
+.sbook-media.contain img.fill{object-fit:contain;filter:drop-shadow(0 12px 18px rgba(11,35,64,.28))}
 .sbook-media.stage{background:radial-gradient(circle at 50% 42%,rgba(255,197,51,.35),rgba(255,197,51,0) 55%),var(--grad);display:grid;place-items:center}
 .sbook-media .book3d{--bw:128px;--bt:16px;padding:0}
 .sbook-media .book3d::after{display:none}
@@ -1089,12 +1091,8 @@ table.leads{min-width:980px}
       </div>
       <div class="student-books">
         <article class="sbook">
-          <div class="sbook-media stage">
-            <div class="book3d" role="img" aria-label="Debate Without Fear by Piyush Narang: book cover">
-              <div class="book3d-inner"><div class="book3d-front"><img src="assets/books/debate-without-fear.jpg" alt="" width="600" height="937" loading="lazy"></div></div>
-            </div>
-          </div>
-          <div class="sbook-body"><span class="pill">MUN &amp; debate</span><h3>Debate Without Fear</h3><p class="muted">Building confidence for MUNs and beyond.</p><p class="by">By <b>Piyush Narang</b></p></div>
+          <div class="sbook-media contain"><img class="fill" src="assets/books/debate-without-fear-full.jpg" alt="Back cover, spine and front cover of Debate Without Fear by Piyush Narang" width="943" height="721" loading="lazy"></div>
+          <div class="sbook-body"><span class="pill">MUN &amp; debate</span><h3>Debate Without Fear</h3><p class="muted">Building confidence for MUNs and beyond. From a nervous first MUN in Grade 9 to 13 consecutive wins and 500+ students mentored across 12 countries.</p><p class="by">By <b>Piyush Narang</b></p></div>
         </article>
         <article class="sbook">
           <div class="sbook-media"><img class="fill" src="assets/books/anatomy-of-starting-a-business.jpg" alt="Nakshatra Bajaj behind a table of copies of The Anatomy of Starting a Business" width="900" height="675" loading="lazy" style="object-position:50% 35%"></div>
