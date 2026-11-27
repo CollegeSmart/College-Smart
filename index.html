@@ -412,6 +412,30 @@ body.admin .gal-item .rm{display:inline-block}
 .author-line b{color:var(--ink)}
 @media (max-width:880px){.book-stage{min-height:440px}}
 @media (max-width:520px){.book-stage .book3d{--bw:210px;--bt:24px}.book-stage{padding-top:4.2rem!important;padding-bottom:5.6rem!important}.book3d .book3d-inner.back{transform:translateX(52px) translateZ(-90px) rotateY(-34deg)}.book-stage{min-height:400px}.stage-badge.b1{top:1rem;right:1rem}.stage-badge.b2{left:.8rem;bottom:.8rem}}
+/* admits marquee */
+.admits{display:grid;gap:1.4rem;min-width:0}
+.admits-head{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:end;justify-content:space-between}
+.admits-title{font-size:clamp(1.4rem,2.6vw,1.9rem)}
+.admit-tabs{display:flex;flex-wrap:wrap;gap:.45rem}
+.admit-tabs button{font:600 .84rem/1 var(--body);padding:.6rem .95rem;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .15s}
+.admit-tabs button:hover{border-color:var(--blue)}
+.admit-tabs button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.admit-tabs button .n{opacity:.6;margin-left:.3rem;font-weight:700}
+.admit-rows{display:grid;gap:1rem;min-width:0}
+.marquee{overflow:hidden;min-width:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:admits-rtl var(--dur,40s) linear infinite}
+.marquee:hover .marquee-track,.marquee:focus-within .marquee-track{animation-play-state:paused}
+@keyframes admits-rtl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.admit-logo{flex:none;width:210px;height:100px;margin-right:1rem;background:#fff;border:1px solid #e2e8f0;border-radius:16px;display:grid;place-items:center;padding:1rem 1.2rem;box-shadow:0 1px 2px rgba(15,31,51,.05),0 6px 16px rgba(15,31,51,.06);transition:transform .2s,box-shadow .2s}
+.admit-logo:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,31,51,.14)}
+.admit-logo img{max-width:100%;max-height:54px;width:auto;height:auto;display:block}
+.admit-logo.text{font-weight:800;color:#2f6391;text-align:center;font-size:.92rem;line-height:1.25}
+.admit-static{display:flex;flex-wrap:wrap;gap:1rem}
+.admit-static .admit-logo{margin-right:0}
+.admits-admin{display:none!important}
+body.admin .admits-admin{display:grid!important}
+@media (max-width:600px){.admit-logo{width:160px;height:82px;padding:.8rem}.admit-logo img{max-height:44px}}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:auto;gap:1rem}.marquee-track .admit-logo{margin-right:0}.marquee-track [aria-hidden="true"]{display:none}}
 /* leads admin */
 .lead-bar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:end}
 .lead-bar label{flex:0 1 200px}
@@ -490,14 +514,16 @@ table.leads{min-width:980px}
         <div class="stat"><span class="n">90%</span><span class="l">Placed at dream university</span></div>
         <div class="stat"><span class="n">$4.59M</span><span class="l">In scholarships</span></div>
       </div>
-      <div class="two" style="gap:2rem">
-        <div class="stack">
-          <span class="eyebrow">Our admits</span>
-          <div class="uni" data-gallery="admits" data-hint="University name, e.g. NYU">
-            <div class="logo-tile"><img src="assets/logos/nyu.png" alt="New York University" loading="lazy"></div><div class="logo-tile"><img src="assets/logos/columbia.png" alt="Columbia University" loading="lazy"></div><div class="logo-tile"><img src="assets/logos/babson.png" alt="Babson College" loading="lazy"></div><div class="logo-tile"><img src="assets/logos/ucl.png" alt="University College London" loading="lazy"></div><div class="logo-tile"><img src="assets/logos/nus.png" alt="National University of Singapore" loading="lazy"></div><div>Ashoka</div>
-          </div>
+      <div class="admits" data-admits>
+        <div class="admits-head">
+          <div class="stack" style="gap:.5rem"><span class="eyebrow">Our admits</span><h2 class="admits-title">Where our Smarties are studying</h2></div>
+          <div class="admit-tabs" role="group" aria-label="Filter universities"></div>
         </div>
-        <div class="stack">
+        <div class="admit-rows"></div>
+      </div>
+      <div class="uni admits-admin" data-gallery="admits" data-hint="University name, e.g. Stanford University"></div>
+      <div class="stack">
+        <div class="stack" style="gap:.6rem">
           <span class="eyebrow">Countries we serve</span>
           <div class="chips"><span class="chip"><i class="flag f-us" aria-hidden="true"></i>USA</span><span class="chip"><i class="flag f-gb" aria-hidden="true"></i>UK</span><span class="chip"><i class="flag f-eu" aria-hidden="true"></i>Europe</span><span class="chip"><i class="flag f-in" aria-hidden="true"></i>India</span><span class="chip"><i class="flag f-ca" aria-hidden="true"></i>Canada</span><span class="chip"><i class="flag f-sg" aria-hidden="true"></i>Singapore</span><span class="chip"><i class="flag f-ae" aria-hidden="true"></i>Dubai</span></div>
         </div>
@@ -943,9 +969,15 @@ table.leads{min-width:980px}
         <span class="eyebrow">Countries we cover</span>
         <div class="chips"><span class="chip"><i class="flag f-us" aria-hidden="true"></i>USA</span><span class="chip"><i class="flag f-gb" aria-hidden="true"></i>UK</span><span class="chip"><i class="flag f-in" aria-hidden="true"></i>India</span><span class="chip"><i class="flag f-eu" aria-hidden="true"></i>Europe</span><span class="chip"><i class="flag f-ae" aria-hidden="true"></i>Dubai</span><span class="chip"><i class="flag f-sg" aria-hidden="true"></i>Singapore</span><span class="chip"><i class="flag f-au" aria-hidden="true"></i>Australia</span></div>
       </div>
-      <div class="stack">
-        <span class="eyebrow">Our students have been admitted to</span>
-        <div class="uni" data-gallery="admits" data-hint="University name, e.g. NYU"><div class="logo-tile"><img src="assets/logos/nyu.png" alt="New York University" loading="lazy"></div><div class="logo-tile"><img src="assets/logos/columbia.png" alt="Columbia University" loading="lazy"></div><div class="logo-tile"><img src="assets/logos/babson.png" alt="Babson College" loading="lazy"></div><div class="logo-tile"><img src="assets/logos/ucl.png" alt="University College London" loading="lazy"></div><div class="logo-tile"><img src="assets/logos/nus.png" alt="National University of Singapore" loading="lazy"></div><div>Ashoka</div></div>
+      <div class="stack" style="grid-column:1/-1">
+        <div class="admits" data-admits>
+        <div class="admits-head">
+          <div class="stack" style="gap:.5rem"><span class="eyebrow">Our admits</span><h2 class="admits-title">Where our Smarties are studying</h2></div>
+          <div class="admit-tabs" role="group" aria-label="Filter universities"></div>
+        </div>
+        <div class="admit-rows"></div>
+      </div>
+      <div class="uni admits-admin" data-hint="University name"></div>
       </div>
     </div>
   </section>
@@ -1450,6 +1482,48 @@ table.leads{min-width:980px}
   document.querySelectorAll('.reg').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();document.getElementById('r-what').value=a.dataset.what;document.getElementById('reg-form').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('r-name').focus({preventScroll:true})})});
 
 
+
+  /* ---------- our admits: scrolling logos ---------- */
+  var ADMITS=[
+    {n:'New York University',f:'nyu',c:['usa']},{n:'Columbia University',f:'columbia',c:['usa']},
+    {n:'Purdue University',f:'purdue',c:['usa']},{n:'University of California',f:'uc',c:['usa']},
+    {n:'Northeastern University',f:'northeastern',c:['usa']},{n:'Indiana University',f:'indiana',c:['usa']},
+    {n:'Georgia Tech',f:'gatech',c:['usa']},{n:'Emory University',f:'emory',c:['usa']},
+    {n:'Babson College',f:'babson',c:['usa','business']},
+    {n:'University College London',f:'ucl',c:['uk']},{n:'Imperial College London',f:'imperial',c:['uk']},
+    {n:"King's College London",f:'kcl',c:['uk']},{n:'University of the Arts London',f:null,c:['uk','fashion']},
+    {n:'London Business School',f:'lbs',c:['uk','business']},{n:'INSEAD',f:'insead',c:['uk','asia','business']},
+    {n:'Istituto Marangoni',f:'marangoni',c:['uk','fashion']},
+    {n:'National University of Singapore',f:'nus',c:['asia']},{n:'University of Melbourne',f:'melbourne',c:['asia']},
+    {n:'UNSW Sydney',f:'unsw',c:['asia']},{n:'Ashoka University',f:'ashoka',c:['india']}
+  ];
+  var ADMIT_CATS=[['all','All'],['usa','USA'],['uk','UK & Europe'],['asia','Singapore & Australia'],['india','India'],['business','Business schools'],['fashion','Fashion & design']];
+  var uploadedAdmits=[];
+  function admitList(cat){
+    var base=ADMITS.filter(function(a){return cat==='all'||a.c.indexOf(cat)>=0}).map(function(a){return{n:a.n,src:a.f?'assets/logos/'+a.f+'.png':null}});
+    if(cat==='all')uploadedAdmits.forEach(function(r){base.push({n:r.caption||'University',src:r.url})});
+    return base;
+  }
+  function tile(a,hidden){return '<div class="admit-logo'+(a.src?'':' text')+'"'+(hidden?' aria-hidden="true"':' role="listitem"')+'>'+(a.src?'<img src="'+esc(a.src)+'" alt="'+(hidden?'':esc(a.n))+'" title="'+esc(a.n)+'">':esc(a.n))+'</div>'}
+  function row(items,secs){
+    if(items.length<6)return '<div class="admit-static" role="list">'+items.map(function(a){return tile(a)}).join('')+'</div>';
+    var once=items.map(function(a){return tile(a)}).join(''),twice=items.map(function(a){return tile(a,true)}).join('');
+    return '<div class="marquee"><div class="marquee-track" role="list" style="--dur:'+Math.max(20,items.length*secs)+'s">'+once+twice+'</div></div>';
+  }
+  function renderAdmits(box){
+    var cat=box.dataset.cat||'all',items=admitList(cat),rows=box.querySelector('.admit-rows');
+    if(items.length>=12){var h=Math.ceil(items.length/2);rows.innerHTML=row(items.slice(0,h),3.4)+row(items.slice(h),4.2)}
+    else rows.innerHTML=row(items,3.6);
+    box.querySelectorAll('.admit-tabs button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.cat===cat))});
+  }
+  document.querySelectorAll('[data-admits]').forEach(function(box){
+    box.dataset.cat='all';
+    box.querySelector('.admit-tabs').innerHTML=ADMIT_CATS.map(function(c){var n=c[0]==='all'?ADMITS.length:ADMITS.filter(function(a){return a.c.indexOf(c[0])>=0}).length;
+      return '<button type="button" data-cat="'+c[0]+'" aria-pressed="false">'+c[1]+'<span class="n">'+n+'</span></button>'}).join('');
+    box.querySelector('.admit-tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;box.dataset.cat=b.dataset.cat;renderAdmits(box)});
+    renderAdmits(box);
+  });
+
   /* ---------- Supabase: photos, videos and text ---------- */
   var SB={url:'https://hfkedgzvzrpxyomhsiii.supabase.co',key:'sb_publishable_70NhiEIQdT5oxbuS1y3tOw_sTkrbiR4',bucket:'site-media'};
   var MAX_BYTES=50*1024*1024;
@@ -1663,6 +1737,7 @@ table.leads{min-width:980px}
   });
   function renderGallery(name){
     var G=galleries[name];if(!G)return;
+    if(name==='admits'){uploadedAdmits=G.rows.slice();document.querySelectorAll('[data-admits]').forEach(renderAdmits)}
     G.els.forEach(function(el){
     el.querySelectorAll('.gal-item').forEach(function(x){x.remove()});
     el.querySelectorAll(':scope > :not(.gal-item)').forEach(function(p){p.hidden=G.rows.length>0});
